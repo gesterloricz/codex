@@ -12,7 +12,12 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -26,10 +31,56 @@ public class Gcash extends javax.swing.JFrame {
     /**
      * Creates new form Gcash
      */
+    
+    int hour, second, minute;
     public Gcash() {
         initComponents();
         
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         
+        Thread thread = new Thread(this::run);
+        thread.start();
+        
+        random();   
+        
+    }
+    
+    public void random() {
+         String letters = "0123456789";
+		int n = 13;
+		StringBuilder sb = new StringBuilder();
+
+		Random random = new Random();
+
+		for (int x = 0; x < n; x++) {
+			int randomIndex = random.nextInt(letters.length());
+			char randomChar = letters.charAt(randomIndex);
+			sb.append(randomChar);
+		}
+                
+                refNum.setText(sb.toString());
+                refNum1.setText(sb.toString());
+    }
+    
+     public void run() {
+        while (true) {
+            Calendar calendar = Calendar.getInstance();
+            hour = calendar.get(Calendar.HOUR_OF_DAY);
+            minute = calendar.get(Calendar.MINUTE);
+            second = calendar.get(Calendar.SECOND);
+
+            Date date = calendar.getTime();
+            SimpleDateFormat Date = new SimpleDateFormat("MMM d, yyyy");
+            String date0 = Date.format(date);
+            Date2.setText(date0);
+            Date3.setText(date0);
+
+            SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss a");
+            String time2 = time.format(date);
+            Time2.setText(time2);
+            Time3.setText(time2);
+
+        }
     }
     
     public void setText(String sb, String selectedComboBoxItem, String amount, String studentID){
@@ -47,6 +98,13 @@ public class Gcash extends javax.swing.JFrame {
         Fee.setText(format1);
         Total.setText(format1);
         mstrAmount.setText(format1 + " PHP");
+        amount1.setText(format1);
+        amount2.setText("₱" + format1);
+        amount3.setText(format1);
+        amount4.setText(format1);
+        item.setText(selectedComboBoxItem);
+        
+   
 
     }
 
@@ -81,21 +139,6 @@ public class Gcash extends javax.swing.JFrame {
         gcashBttn = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Gcash = new javax.swing.JPanel();
-        jPanel5 = new RoundedPanel(55, new Color(55,111,138));
-        jLabel19 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        n = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        backBttn = new javax.swing.JLabel();
         mstrCard = new javax.swing.JPanel();
         jPanel6 = new RoundedPanel(55, new Color(55,111,138));
         jLabel12 = new javax.swing.JLabel();
@@ -119,11 +162,60 @@ public class Gcash extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         backBtn = new javax.swing.JLabel();
         mstrReceipt = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel9 = new RoundedPanel(55, new Color(55,111,138));
+        jLabel23 = new javax.swing.JLabel();
+        proceedBtn = new javax.swing.JButton();
+        amount3 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        amount4 = new javax.swing.JLabel();
+        item = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        studentIDD = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        refNum1 = new javax.swing.JLabel();
+        Date3 = new javax.swing.JLabel();
+        Time3 = new javax.swing.JLabel();
+        Gcash = new javax.swing.JPanel();
+        backBttn = new javax.swing.JLabel();
+        jPanel7 = new RoundedPanel(55, new Color(55,111,138));
+        jLabel29 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        payButton1 = new javax.swing.JButton();
+        numLabel = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        numTF = new javax.swing.JTextField();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        gNext = new javax.swing.JPanel();
+        backBttn1 = new javax.swing.JLabel();
+        jPanel8 = new RoundedPanel(55, new Color(55,111,138));
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        gcashNum = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        amount1 = new javax.swing.JLabel();
+        amount2 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        refNum = new javax.swing.JLabel();
+        Date2 = new javax.swing.JLabel();
+        Time2 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel.setBackground(new java.awt.Color(36, 48, 51));
@@ -192,7 +284,7 @@ public class Gcash extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("SansSerif", 3, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Pay with");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 160, -1));
 
         masterCard.setBackground(new java.awt.Color(55, 111, 138));
         masterCard.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
@@ -207,7 +299,7 @@ public class Gcash extends javax.swing.JFrame {
                 masterCardActionPerformed(evt);
             }
         });
-        jPanel2.add(masterCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 180, 70));
+        jPanel2.add(masterCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 180, 70));
 
         gcashBttn.setBackground(new java.awt.Color(55, 111, 138));
         gcashBttn.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
@@ -222,9 +314,9 @@ public class Gcash extends javax.swing.JFrame {
                 gcashBttnActionPerformed(evt);
             }
         });
-        jPanel2.add(gcashBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 140, 70));
+        jPanel2.add(gcashBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 140, 70));
 
-        checkOut.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 720, 620, 180));
+        checkOut.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 720, 620, 140));
 
         jLabel8.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -237,71 +329,6 @@ public class Gcash extends javax.swing.JFrame {
         checkOut.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 400, -1));
 
         Card.add(checkOut, "card2");
-
-        Gcash.setBackground(new java.awt.Color(36, 48, 51));
-        Gcash.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel5.setBackground(new java.awt.Color(36, 48, 51));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel19.setFont(new java.awt.Font("SansSerif", 1, 19)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("5,600.00");
-        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 80, 20));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel7.setText("5,600.00");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 70, 30));
-
-        jLabel20.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("TOTAL:");
-        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 430, -1));
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel21.setText("Reference");
-        jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel22.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel22.setText("Item:");
-        jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
-
-        jLabel23.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
-        jLabel23.setText("Student ID:");
-        jPanel5.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 160, 640, 20));
-
-        n.setFont(new java.awt.Font("SansSerif", 1, 56)); // NOI18N
-        n.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel5.add(n, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 320, 60));
-
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
-        jPanel5.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 570, 20));
-
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 590, 20));
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel26.setText("Tuition Fee");
-        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
-
-        jLabel27.setFont(new java.awt.Font("SansSerif", 1, 27)); // NOI18N
-        jLabel27.setText("536523");
-        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 110, -1));
-
-        Gcash.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 290, 620, 390));
-
-        backBttn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/backBtn.png"))); // NOI18N
-        backBttn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backBttnMouseClicked(evt);
-            }
-        });
-        Gcash.add(backBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
-
-        Card.add(Gcash, "card3");
 
         mstrCard.setBackground(new java.awt.Color(36, 48, 51));
         mstrCard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -428,20 +455,241 @@ public class Gcash extends javax.swing.JFrame {
         mstrReceipt.setBackground(new java.awt.Color(36, 48, 51));
         mstrReceipt.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
-        );
+        jPanel9.setBackground(new java.awt.Color(36, 48, 51));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mstrReceipt.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, -1, -1));
+        jLabel23.setFont(new java.awt.Font("SansSerif", 0, 56)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Online Payment");
+        jPanel9.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 400, -1));
+
+        proceedBtn.setBackground(new java.awt.Color(98, 161, 192));
+        proceedBtn.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N
+        proceedBtn.setText("Proceed");
+        proceedBtn.setBorder(null);
+        proceedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                proceedBtnActionPerformed(evt);
+            }
+        });
+        jPanel9.add(proceedBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 720, 110, 60));
+
+        amount3.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        amount3.setText("PHP 00000.00");
+        jPanel9.add(amount3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
+        jPanel9.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 620, 500, 20));
+
+        jLabel24.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jLabel24.setText("Successfully Paid!");
+        jPanel9.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
+
+        amount4.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        amount4.setText("Amount Paid");
+        jPanel9.add(amount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
+
+        item.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        item.setText("Item");
+        jPanel9.add(item, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
+
+        jLabel39.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel39.setText("Amount Paid");
+        jPanel9.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+
+        jLabel41.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel41.setText("Student Name");
+        jPanel9.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, -1, -1));
+
+        jLabel42.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel42.setText("Item");
+        jPanel9.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+
+        jLabel43.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel43.setText("MasterCard");
+        jPanel9.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, -1, -1));
+
+        studentIDD.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        studentIDD.setText("ID");
+        jPanel9.add(studentIDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, -1));
+
+        jLabel47.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel47.setText("Payment Method");
+        jPanel9.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
+
+        jLabel48.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel48.setText("Student ID");
+        jPanel9.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+
+        jLabel50.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel50.setText("Student Name");
+        jPanel9.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 560, -1, -1));
+
+        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
+        jPanel9.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 500, 20));
+
+        jLabel52.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel52.setText("Ref No.");
+        jPanel9.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 650, -1, -1));
+
+        refNum1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        refNum1.setText("4586745845456034");
+        jPanel9.add(refNum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 650, -1, -1));
+
+        Date3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        Date3.setText("Date");
+        jPanel9.add(Date3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 650, 110, -1));
+
+        Time3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        Time3.setText("Time");
+        jPanel9.add(Time3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 650, -1, -1));
+
+        mstrReceipt.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 590, 820));
 
         Card.add(mstrReceipt, "card5");
+
+        Gcash.setBackground(new java.awt.Color(36, 48, 51));
+        Gcash.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        backBttn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/backBtn.png"))); // NOI18N
+        backBttn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backBttnMouseClicked(evt);
+            }
+        });
+        Gcash.add(backBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
+
+        jPanel7.setBackground(new java.awt.Color(36, 48, 51));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
+        jPanel7.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 120, 610, 20));
+
+        jLabel34.setFont(new java.awt.Font("SansSerif", 0, 56)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Online Payment");
+        jPanel7.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 400, -1));
+
+        jLabel40.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/gcash2.png"))); // NOI18N
+        jPanel7.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
+
+        payButton1.setBackground(new java.awt.Color(98, 161, 192));
+        payButton1.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N
+        payButton1.setText("Pay");
+        payButton1.setBorder(null);
+        payButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payButton1ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(payButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 140, 60));
+
+        numLabel.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        numLabel.setText("Pay with Gcash");
+        jPanel7.add(numLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
+        jPanel5.setBackground(new java.awt.Color(98, 161, 192));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        numTF.setBackground(new java.awt.Color(98, 161, 192));
+        numTF.setBorder(null);
+        numTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numTFActionPerformed(evt);
+            }
+        });
+        jPanel5.add(numTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 370, 50));
+
+        jLabel44.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        jLabel44.setText("+63");
+        jPanel5.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jPanel7.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 430, 50));
+
+        jLabel45.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jLabel45.setText("Input your Mobile number");
+        jPanel7.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
+
+        Gcash.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 580, 590));
+
+        Card.add(Gcash, "card5");
+
+        gNext.setBackground(new java.awt.Color(36, 48, 51));
+        gNext.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        backBttn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/backBtn.png"))); // NOI18N
+        backBttn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backBttn1MouseClicked(evt);
+            }
+        });
+        gNext.add(backBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
+
+        jPanel8.setBackground(new java.awt.Color(36, 48, 51));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
+        jPanel8.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 500, 20));
+
+        jLabel36.setFont(new java.awt.Font("SansSerif", 0, 56)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Online Payment");
+        jPanel8.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 400, -1));
+
+        gcashNum.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        gcashNum.setText("Pay with Gcash");
+        jPanel8.add(gcashNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
+
+        jLabel49.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jLabel49.setText("Sent via Gcash ");
+        jPanel8.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/ok.png"))); // NOI18N
+        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/receipt.png"))); // NOI18N
+        jLabel19.setText("jLabel19");
+        jPanel8.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 690, 630, -1));
+
+        amount1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        amount1.setText("Amount");
+        jPanel8.add(amount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, -1, -1));
+
+        amount2.setFont(new java.awt.Font("SansSerif", 0, 30)); // NOI18N
+        amount2.setText("₱350.00");
+        jPanel8.add(amount2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, -1, -1));
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ces/blueL.png"))); // NOI18N
+        jPanel8.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 240, 610, 20));
+
+        jLabel21.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel21.setText("Amount");
+        jPanel8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("SansSerif", 0, 21)); // NOI18N
+        jLabel22.setText("Total Amount Spent");
+        jPanel8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, -1, -1));
+
+        refNum.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        refNum.setText("4586745845456034");
+        jPanel8.add(refNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, -1, -1));
+
+        Date2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        Date2.setText("Date");
+        jPanel8.add(Date2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, 120, -1));
+
+        Time2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        Time2.setText("Time");
+        jPanel8.add(Time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel26.setText("Ref No.");
+        jPanel8.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, -1, -1));
+
+        gNext.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 580, 750));
+
+        Card.add(gNext, "card5");
 
         Panel.add(Card, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
@@ -467,14 +715,6 @@ public class Gcash extends javax.swing.JFrame {
         Card.repaint();
         Card.revalidate();
     }//GEN-LAST:event_gcashBttnActionPerformed
-
-    private void backBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBttnMouseClicked
-        // TODO add your handling code here:
-        Card.removeAll();
-        Card.add(checkOut);
-        Card.repaint();
-        Card.revalidate();
-    }//GEN-LAST:event_backBttnMouseClicked
 
     private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
         // TODO add your handling code here:
@@ -502,7 +742,49 @@ public class Gcash extends javax.swing.JFrame {
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         // TODO add your handling code here:
+         Card.removeAll();
+        Card.add(mstrReceipt);
+        Card.repaint();
+        Card.revalidate();
+        
     }//GEN-LAST:event_payButtonActionPerformed
+
+    private void backBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBttnMouseClicked
+        // TODO add your handling code here:
+        Card.removeAll();
+        Card.add(checkOut);
+        Card.repaint();
+        Card.revalidate();
+    }//GEN-LAST:event_backBttnMouseClicked
+
+    private void numTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numTFActionPerformed
+
+    private void payButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButton1ActionPerformed
+        // TODO add your handling code here:
+        Card.removeAll();
+        Card.add(gNext);
+        Card.repaint();
+        Card.revalidate();
+        
+        String num = numTF.getText();
+        
+        String formattedNum = num.replaceAll("(.{4})(?!$)", "$1 ");
+        
+        gcashNum.setText(formattedNum);
+    }//GEN-LAST:event_payButton1ActionPerformed
+
+    private void backBttn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBttn1MouseClicked
+        Card.removeAll();
+        Card.add(Gcash);
+        Card.repaint();
+        Card.revalidate();
+    }//GEN-LAST:event_backBttn1MouseClicked
+
+    private void proceedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proceedBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proceedBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -521,20 +803,31 @@ public class Gcash extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Card;
+    private javax.swing.JLabel Date2;
+    private javax.swing.JLabel Date3;
     private javax.swing.JLabel Fee;
     private javax.swing.JPanel Gcash;
     private javax.swing.JPanel Panel;
+    private javax.swing.JLabel Time2;
+    private javax.swing.JLabel Time3;
     private javax.swing.JLabel Total;
+    private javax.swing.JLabel amount1;
+    private javax.swing.JLabel amount2;
+    private javax.swing.JLabel amount3;
+    private javax.swing.JLabel amount4;
     private javax.swing.JLabel backBtn;
     private javax.swing.JLabel backBttn;
+    private javax.swing.JLabel backBttn1;
     private javax.swing.JPanel checkOut;
+    private javax.swing.JPanel gNext;
     private javax.swing.JButton gcashBttn;
+    private javax.swing.JLabel gcashNum;
+    private javax.swing.JLabel item;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -544,31 +837,49 @@ public class Gcash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -576,11 +887,17 @@ public class Gcash extends javax.swing.JFrame {
     private javax.swing.JLabel mstrAmount;
     private javax.swing.JPanel mstrCard;
     private javax.swing.JPanel mstrReceipt;
-    private javax.swing.JLabel n;
+    private javax.swing.JLabel numLabel;
+    private javax.swing.JTextField numTF;
     private javax.swing.JButton payButton;
+    private javax.swing.JButton payButton1;
+    private javax.swing.JButton proceedBtn;
+    private javax.swing.JLabel refNum;
+    private javax.swing.JLabel refNum1;
     private javax.swing.JLabel referenceCode;
     private javax.swing.JLabel sID;
     private javax.swing.JLabel selectedItem;
+    private javax.swing.JLabel studentIDD;
     // End of variables declaration//GEN-END:variables
 
 class RoundedPanel extends JPanel
